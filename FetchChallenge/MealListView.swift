@@ -10,7 +10,6 @@ struct MealListView: View {
                     Text(meal.strMeal)
                 }
             }
-            .navigationTitle("Desserts")
             .task {
                 FetchApi().fetchDesserts { mealList in
                     if let mealList = mealList {
@@ -18,6 +17,7 @@ struct MealListView: View {
                     }
                 }
             }
+            .navigationTitle("Desserts")
         }
     }
 }
