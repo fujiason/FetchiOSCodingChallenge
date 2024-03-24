@@ -9,6 +9,7 @@ class DessertListViewModel: ObservableObject {
     }
 
     convenience init() {
+        // by default use FetchApi(), otherwise use a custom class that inherits from FetchApi
         self.init(api: FetchApi())
     }
 

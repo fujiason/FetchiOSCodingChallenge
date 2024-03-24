@@ -15,6 +15,7 @@ class MealViewModel: ObservableObject {
     func fetchMeal(mealID: String) {
         api.fetchMeals(mealID: mealID) { meal in
             if let meal = meal {
+                // if the value of the properties is just whitespace, trim it so that it becomes empty to hit two birds with one stone
                 let filteredProperties = meal.properties.filter { !$0.value.trimmingCharacters(in: .whitespaces).isEmpty }
                 DispatchQueue.main.async {
                     self.meal = Meal(properties: filteredProperties)

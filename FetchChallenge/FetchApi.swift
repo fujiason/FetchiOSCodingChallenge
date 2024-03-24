@@ -22,6 +22,8 @@ class FetchApi {
 
     func fetchMeals(mealID: String, completion: @escaping (Meal?) -> ()) {
         let urlString = "\(baseURL)/lookup.php?i=\(mealID)"
+        // I wanted to implement guard rather than have a "pyramid of doom" of if and catch statements which
+        // all return a completion(nil)
         guard let url = URL(string: urlString) else {
             completion(nil)
             return

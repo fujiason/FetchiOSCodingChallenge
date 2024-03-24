@@ -10,6 +10,7 @@ struct Dessert: Decodable, Identifiable, Comparable {
         return idMeal
     }
     
+    // sorts dessert objects in meals list in DessertList by alphabetical order
     static func < (lhs: Dessert, rhs: Dessert) -> Bool {
         return lhs.strMeal < rhs.strMeal
     }
