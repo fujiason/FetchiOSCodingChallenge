@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MealDetailView: View {
+struct MealsView: View {
     @State private var meal: Meal?
     let mealID: String
 
@@ -40,8 +40,8 @@ struct MealDetailView: View {
         }
         .padding()
         .task {
-            FetchApi().fetchMealDetail(mealID: mealID) { mealDetail in
-                if let meal = mealDetail {
+            FetchApi().fetchMeals(mealID: mealID) { meals in
+                if let meal = meals {
                     let filteredProperties = meal.properties.filter { !$0.value.trimmingCharacters(in: .whitespaces).isEmpty }
                     self.meal = Meal(properties: filteredProperties)
                 } else {

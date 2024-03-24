@@ -1,10 +1,10 @@
 import Foundation
 
-struct MealList: Decodable {
-    let meals: [MealPreview]
+struct DessertList: Decodable {
+    let meals: [Dessert]
 }
 
-struct MealPreview: Decodable, Identifiable, Comparable {
+struct Dessert: Decodable, Identifiable, Comparable {
     let idMeal: String
     let strMeal: String
     let strMealThumb: String
@@ -13,12 +13,12 @@ struct MealPreview: Decodable, Identifiable, Comparable {
         return idMeal
     }
     
-    static func < (lhs: MealPreview, rhs: MealPreview) -> Bool {
+    static func < (lhs: Dessert, rhs: Dessert) -> Bool {
         return lhs.strMeal < rhs.strMeal
     }
 }
 
-struct MealDetail: Decodable {
+struct Meals: Decodable {
     let meals: [Meal]
 }
 

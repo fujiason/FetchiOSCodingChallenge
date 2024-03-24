@@ -1,19 +1,19 @@
 import SwiftUI
 
-struct MealListView: View {
-    @State private var meals: [MealPreview] = []
+struct DessertListView: View {
+    @State private var meals: [Dessert] = []
 
     var body: some View {
         NavigationView {
             List(meals) { meal in
-                NavigationLink(destination: MealDetailView(mealID: meal.idMeal)) {
+                NavigationLink(destination: MealsView(mealID: meal.idMeal)) {
                     Text(meal.strMeal)
                 }
             }
             .task {
-                FetchApi().fetchDesserts { mealList in
-                    if let mealList = mealList {
-                        meals = mealList.meals.sorted()
+                FetchApi().fetchDesserts { dessertList in
+                    if let dessertList = dessertList {
+                        meals = dessertList.meals.sorted()
                     }
                 }
             }
