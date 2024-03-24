@@ -2,8 +2,9 @@ import XCTest
 @testable import FetchChallenge
 
 class DessertListViewModelTests: XCTestCase {
-
+    
     func testFetchDesserts() {
+        
         class MockFetchApi: FetchApi {
             override func fetchDesserts(completion: @escaping (DessertList?) -> ()) {
                 let dessert1 = Dessert(idMeal: "1", strMeal: "Dessert1")
@@ -14,11 +15,13 @@ class DessertListViewModelTests: XCTestCase {
         }
         
         let viewModel = DessertListViewModel(api: MockFetchApi())
-        
         viewModel.fetchDesserts()
         
-        XCTAssertEqual(viewModel.meals.count, 2, "ViewModel should have 2 desserts")
-        XCTAssertEqual(viewModel.meals[0].strMeal, "Dessert1", "Dessert name should match")
-        XCTAssertEqual(viewModel.meals[1].strMeal, "Dessert2", "Dessert name should match")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertEqual(viewModel.meals.count, 2, "ViewModel should have 2 desserts")
+            XCTAssertEqual(viewModel.meals[0].strMeal, "Dessert1", "Dessert name should match")
+            XCTAssertEqual(viewModel.meals[1].strMeal, "Dessert2", "Dessert name should match")
+        }
     }
+
 }

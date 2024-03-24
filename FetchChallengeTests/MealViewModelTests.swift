@@ -19,10 +19,12 @@ class MealViewModelTests: XCTestCase {
         
         viewModel.fetchMeal(mealID: "123")
         
-        XCTAssertEqual(viewModel.meal?.properties["idMeal"], "123", "ID should match")
-        XCTAssertEqual(viewModel.meal?.properties["strMeal"], "Dummy Meal", "Name should match")
-        XCTAssertEqual(viewModel.meal?.properties["strIngredient1"], "Milk", "Ingredient1 should match")
-        XCTAssertEqual(viewModel.meal?.properties["strMeasure1"], "1 cup", "Measure1 should match")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertEqual(viewModel.meal?.properties["idMeal"], "123", "ID should match")
+            XCTAssertEqual(viewModel.meal?.properties["strMeal"], "Dummy Meal", "Name should match")
+            XCTAssertEqual(viewModel.meal?.properties["strIngredient1"], "Milk", "Ingredient1 should match")
+            XCTAssertEqual(viewModel.meal?.properties["strMeasure1"], "1 cup", "Measure1 should match")
+        }
     }
     
     func testFetchMeal_Failure() {
