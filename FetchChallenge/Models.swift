@@ -5,7 +5,6 @@ struct DessertList: Decodable {
 struct Dessert: Decodable, Identifiable, Comparable {
     let idMeal: String
     let strMeal: String
-    let strMealThumb: String
     
     var id: String {
         return idMeal

@@ -2,7 +2,15 @@ import Foundation
 
 class MealViewModel: ObservableObject {
     @Published var meal: Meal?
-    private let api = FetchApi()
+    private let api: FetchApi
+    
+    init(api: FetchApi) {
+        self.api = api
+    }
+
+    convenience init() {
+        self.init(api: FetchApi())
+    }
 
     func fetchMeal(mealID: String) {
         api.fetchMeals(mealID: mealID) { meal in
